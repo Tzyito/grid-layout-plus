@@ -1,5 +1,5 @@
 import { defineComponent as p, useAttrs as f, ref as a, computed as d, watch as h, resolveComponent as g, openBlock as y, createBlock as _, normalizeProps as v, guardReactiveProps as H, unref as b, withCtx as x, createElementVNode as N, renderSlot as R } from "vue";
-import { useResizeObserver as w } from "../node_modules/.pnpm/@vueuse_core@12.7.0_typescript@5.4.4/node_modules/@vueuse/core/index.mjs";
+import { useResizeObserver as w } from "@vueuse/core";
 const I = /* @__PURE__ */ p({
   __name: "auto-height-item",
   props: {
