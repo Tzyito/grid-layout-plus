@@ -1,7 +1,7 @@
-import { defineComponent as p, ref as u, computed as d, watch as f, openBlock as s, createBlock as c, normalizeProps as y, guardReactiveProps as g, withCtx as b, createElementVNode as h, renderSlot as N } from "vue";
+import { defineComponent as f, ref as u, computed as d, watch as s, onMounted as c, onBeforeUnmount as y, openBlock as g, createBlock as h, normalizeProps as b, guardReactiveProps as v, withCtx as N, createElementVNode as B, renderSlot as H } from "vue";
 import { useResizeObserver as _ } from "@vueuse/core";
-import v from "./grid-item.vue.mjs";
-const R = /* @__PURE__ */ p({
+import x from "./grid-item.vue.mjs";
+const z = /* @__PURE__ */ f({
   __name: "auto-height-item",
   props: {
     isDraggable: {
@@ -90,27 +90,34 @@ const R = /* @__PURE__ */ p({
     }
   },
   emits: ["update:h"],
-  setup(o, { emit: i }) {
-    const t = o, l = i, n = u(null), a = u(0), m = d(() => {
+  setup(i, { emit: l }) {
+    const t = i, m = l, n = u(null), a = u(0), p = d(() => {
       if (a.value <= 0) return t.minH;
       const e = t.margin[1], r = Math.ceil((a.value + e) / (t.rowHeight + e));
       return Math.min(Math.max(r, t.minH), t.maxH);
-    });
-    return _(n, (e) => {
+    }), o = _(n, (e) => {
       const r = e[0];
       r && (a.value = r.contentRect.height);
-    }), f(
-      () => m.value,
+    });
+    return s(
+      () => p.value,
       (e) => {
-        e !== t.h && l("update:h", e);
+        e !== t.h && m("update:h", e);
       }
-    ), (e, r) => (s(), c(v, y(g({ ...t })), {
-      default: b(() => [
-        h("div", {
+    ), c(() => {
+      if (n.value) {
+        const e = n.value.clientHeight;
+        e > 0 && (a.value = e);
+      }
+    }), y(() => {
+      o && o.stop();
+    }), (e, r) => (g(), h(x, b(v({ ...t })), {
+      default: N(() => [
+        B("div", {
           ref_key: "contentRef",
           ref: n
         }, [
-          N(e.$slots, "default")
+          H(e.$slots, "default")
         ], 512)
       ]),
       _: 3
@@ -118,6 +125,6 @@ const R = /* @__PURE__ */ p({
   }
 });
 export {
-  R as default
+  z as default
 };
 //# sourceMappingURL=auto-height-item.vue.mjs.map
